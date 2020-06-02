@@ -1,5 +1,6 @@
 package Models;
 
+import Models.Objects.Racket;
 import View.Menus.Game;
 import javafx.scene.paint.Color;
 import org.jetbrains.annotations.NotNull;

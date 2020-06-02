@@ -1,5 +1,6 @@
 package Models;
 
+import Models.Objects.Racket;
 import View.Menus.Game;
 import javafx.scene.image.Image;
 import javafx.scene.media.Media;

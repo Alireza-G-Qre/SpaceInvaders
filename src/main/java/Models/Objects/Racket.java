@@ -1,5 +1,7 @@
-package Models;
+package Models.Objects;
 
+import Models.MainObject;
+import Models.Shot;
 import View.Menus.Game;
 import javafx.scene.image.Image;
 import org.jetbrains.annotations.Contract;
@@ -8,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 import java.util.List;
 
-public class Racket {
+public class Racket extends MainObject {
 
     // Static content
     protected static final int move_steps = 10;
@@ -34,7 +36,7 @@ public class Racket {
     );
 
     // field
-    protected int posX, posY, explosionStep;
+    protected int explosionStep;
     protected Image image;
     protected boolean ok = true, destroyed = false;
 
