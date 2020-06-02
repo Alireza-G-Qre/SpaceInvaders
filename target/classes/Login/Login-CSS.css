@@ -1,0 +1,22 @@
+.anchor {
+    -fx-background-image: url('login_image.jpg');
+    -fx-background-size: cover;
+}
+
+.myButton {
+    -fx-text-fill: white;
+    -fx-background-color: #3f3571;
+}
+
+.myButton:hover {
+    -fx-text-fill: #3f3571;;
+    -fx-background-color: white;
+}
+
+.myField {
+
+}
+
+.myLabel {
+
+}

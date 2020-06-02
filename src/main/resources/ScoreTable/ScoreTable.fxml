@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Scene stylesheets="@ScoreTable-CSS.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.ScoreTable">
+    <AnchorPane layoutY="-6.0" prefHeight="700.0" prefWidth="350.0" styleClass="anchor">
+        <TableView fx:id="table" layoutX="25.0" layoutY="100.0" prefHeight="500.0" prefWidth="300.0">
+            <columns>
+                <TableColumn fx:id="ranks" editable="false" prefWidth="52.399986267089844" sortable="false" text="rank" />
+                <TableColumn fx:id="usernames" prefWidth="148.40002822875977" text="username" />
+                <TableColumn fx:id="records" prefWidth="98.39997863769531" text="record" />
+            </columns>
+        </TableView>
+        <Label layoutX="25.0" layoutY="611.0" text="You: " textFill="#b50303">
+            <font>
+                <Font name="Perpetua" size="30.0" />
+            </font>
+        </Label>
+        <Label layoutX="146.0" layoutY="663.0" prefHeight="22.0" prefWidth="64.0" text="QreCompany" textFill="#f2eeee">
+            <font>
+                <Font size="10.0" />
+            </font>
+        </Label>
+        <TextField fx:id="myRank" alignment="CENTER" editable="false" layoutX="99.0" layoutY="616.0" prefHeight="27.0" prefWidth="46.0" styleClass="buttonPrime" />
+        <TextField fx:id="myRecord" alignment="CENTER" editable="false" layoutX="156.0" layoutY="616.0" prefHeight="27.0" prefWidth="170.0" styleClass="buttonPrime" />
+        <Label layoutX="71.0" layoutY="28.0" text="RANKING" textFill="#b71515">
+            <font>
+                <Font name="Poor Richard" size="49.0" />
+            </font>
+        </Label>
+        <Button layoutX="10.0" layoutY="13.0" mnemonicParsing="false" onMouseClicked="#backToGame" prefHeight="45.0" prefWidth="44.0" styleClass="button" text="B">
+            <font>
+                <Font size="10.0" />
+            </font></Button>
+    </AnchorPane>
+</Scene>

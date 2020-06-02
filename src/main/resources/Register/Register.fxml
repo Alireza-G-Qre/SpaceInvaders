@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.media.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<Scene stylesheets="@Register-CSS.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Menus.Register">
+    <AnchorPane id="AnchorPane" prefHeight="700" prefWidth="350" styleClass="anchor">
+        <TextField fx:id="username" layoutX="75.0" layoutY="468.0" prefHeight="26.0" prefWidth="200.0" promptText="username" />
+        <PasswordField fx:id="passwordOne" layoutX="75.0" layoutY="501.0" prefHeight="26.0" prefWidth="200.0" promptText="password" />
+        <PasswordField fx:id="passwordTow" layoutX="75.0" layoutY="535.0" prefHeight="26.0" prefWidth="200.0" promptText="password" />
+        <CheckBox fx:id="checkbox" graphicTextGap="2.0" layoutX="75.0" layoutY="572.0" mnemonicParsing="false" onAction="#checkbox" text="End." textFill="#f5f3f3" />
+        <Button fx:id="register" disable="true" layoutX="75.0" layoutY="599.0" mnemonicParsing="false" onAction="#register" prefHeight="26.0" prefWidth="200.0" styleClass="myButton" text="register" />
+        <Label layoutX="111.0" layoutY="41.0" prefHeight="54.0" prefWidth="133.0" text="Register" textFill="#9a0808">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
+        <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="200.0" layoutX="75.0" layoutY="150.0" styleClass="myMediaView">
+<!--            <mediaPlayer>-->
+<!--                <MediaPlayer autoPlay="true">-->
+<!--                    <media>-->
+<!--                        <Media source="file:/C:/Users/Alireza/Desktop/Alireza/SI_Game/src/main/resources/Register/register-clip.mp4" />-->
+<!--                    </media>-->
+<!--                </MediaPlayer>-->
+<!--            </mediaPlayer>-->
+         <effect>
+            <DropShadow height="10.0" radius="4.5" spread="1.0" width="10.0">
+               <color>
+                  <Color red="0.5" green="0.3432636857032776" blue="0.02500000037252903" opacity="0.3100000023841858" />
+               </color>
+            </DropShadow>
+         </effect>
+        </MediaView>
+    </AnchorPane>
+</Scene>

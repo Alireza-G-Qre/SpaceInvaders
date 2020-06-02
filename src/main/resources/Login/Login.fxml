@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Scene stylesheets="@Login-CSS.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+       fx:controller="View.Menus.Login">
+    <AnchorPane id="AnchorPane" prefHeight="700" prefWidth="350" styleClass="anchor">
+        <TextField fx:id="username" layoutX="75.0" layoutY="495.0" prefHeight="26.0" prefWidth="200.0"
+                   promptText="username"/>
+        <PasswordField fx:id="password" layoutX="75.0" layoutY="528.0" prefHeight="26.0" prefWidth="200.0"
+                       promptText="password"/>
+        <CheckBox fx:id="checkbox" graphicTextGap="2.0" layoutX="75.0" layoutY="566.0" mnemonicParsing="false"
+                  onAction="#checkbox" text="I'm ready." textFill="#f5f3f3"/>
+        <Button fx:id="login" disable="true" layoutX="173.0" layoutY="562.0" mnemonicParsing="false" onAction="#login"
+                prefHeight="26.0" prefWidth="100.0" styleClass="myButton" text="login"/>
+        <Button fx:id="register" disable="true" layoutX="75.0" layoutY="599.0" mnemonicParsing="false"
+                onAction="#register" prefHeight="26.0" prefWidth="200.0" styleClass="myButton" text="register"/>
+        <Label layoutX="146.0" layoutY="663.0" prefHeight="22.0" prefWidth="64.0" text="QreCompany" textFill="#f2eeee">
+            <font>
+                <Font size="10.0"/>
+            </font>
+        </Label>
+        <Label layoutX="25.0" layoutY="42.0" prefHeight="104.0" prefWidth="307.0" text=" SPACE INVADERS"
+               textFill="#8a0000" wrapText="true">
+            <font>
+                <Font size="36.0"/>
+            </font>
+        </Label>
+        <opaqueInsets>
+            <Insets/>
+        </opaqueInsets>
+    </AnchorPane>
+</Scene>

@@ -1,0 +1,6 @@
+.myGameImage {
+    -fx-background-image: url(game-image.jpg);
+    -fx-background-size: cover;
+}
+
+

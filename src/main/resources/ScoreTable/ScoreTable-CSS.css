@@ -1,0 +1,20 @@
+.anchor {
+    -fx-background-image: url(background-image.jpg);
+    -fx-background-size: cover;
+}
+
+.button {
+    -fx-background-color: green;
+    -fx-text-fill: white;
+    -fx-shape: "M 800 250 Q 700 400 200 400 L 50 500 L 150 400 Q 150 350 50 400 Q 150 350 150 300 C 0 250 0 300 150 250 Q 150 200 50 150 Q 150 200 150 150 L 50 50 L 200 150 Q 700 150 800 300 ";
+}
+
+.button:hover {
+    -fx-background-color: white;
+    -fx-text-fill: green;
+}
+
+.buttonPrime {
+    -fx-border-color: red;
+    -fx-border-width: 1;
+}
