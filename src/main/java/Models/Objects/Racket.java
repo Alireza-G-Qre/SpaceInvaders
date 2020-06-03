@@ -1,7 +1,6 @@
 package Models.Objects;
 
 import Models.MainObject;
-import Models.Shot;
 import View.Menus.Game;
 import javafx.scene.image.Image;
 import org.jetbrains.annotations.Contract;
@@ -14,7 +13,7 @@ public class Racket extends MainObject {
 
     // Static content
     protected static final int move_steps = 10;
-    protected static int size = 60;
+    protected static final int RacketSize = 60;
 
     protected static List<Image> explosion_images = Arrays.asList(
             new Image("file:src/main/resources/Images/Explosion/Explosion-01.jpg"),
@@ -38,24 +37,20 @@ public class Racket extends MainObject {
     // field
     protected int explosionStep;
     protected Image image;
-    protected boolean ok = true, destroyed = false;
+    protected boolean explosion;
 
     // Getter and setters
-    public boolean isOk() {
-        return ok;
+    public boolean isExplosion() {
+        return explosion;
     }
 
-    public boolean isDestroyed() {
-        return destroyed;
-    }
-
-    public static int getSize() {
-        return size;
+    public static int getRacketSize() {
+        return RacketSize;
     }
 
     // controller method
     public void moveToUp() {
-        posY = Math.max(0, posY- move_steps);
+        posY = Math.max(0, posY - move_steps);
     }
 
     public void moveToLeft() {
@@ -63,56 +58,61 @@ public class Racket extends MainObject {
     }
 
     public void moveToRight() {
-        posX = Math.min(Game.getWidth() - size, posX + move_steps);
+        posX = Math.min(
+                Game.getWidth() - Racket.getRacketSize(),
+                posX + move_steps
+        );
     }
 
     public void moveToDown() {
-        posY = Math.min(Game.getHeight() - size, posY + move_steps);
+        posY = Math.min(Game.getHeight() - Racket.getRacketSize(),
+                posY + move_steps
+        );
     }
 
     public Shot shoot() {
-        return new Shot(posX + Racket.size / 2, posY - Racket.size / 2);
+        return new Shot(
+                posX + Racket.getRacketSize() / 2,
+                posY - Racket.getRacketSize() / 2
+        );
     }
 
+    @Override
     public void update() {
 
-        if (!ok) {
-            if(explosionStep % 5 == 0) {
+        if (explosion) {
+            if (explosionStep % 5 == 0) {
                 image = explosion_images.get(explosionStep / 5);
             }
-            destroyed = ++explosionStep >= explosion_steps * 5;
+            setRemove(++explosionStep >= explosion_steps * 5);
         }
     }
 
-    public void draw() {
-        Game.getGc().drawImage(image, posX, posY, size, size);
+    @Override
+    public void drawObj() {
+        Game.getGc().drawImage(image, posX, posY, Racket.getRacketSize(), Racket.getRacketSize());
     }
 
-    public boolean collide(@NotNull Racket other) {
-        int disX = Math.abs(posX - other.posX);
-        int disY = Math.abs(posY - other.posY);
-        return Math.sqrt(disX * disX + disY * disY) < size;
-    }
-
-    public void explode() {
-        ok = false;
+    @Override
+    public void ifCollide() {
+        explosion = true;
         explosionStep = 0;
     }
 
     @NotNull
     @Contract(" -> new")
     public static Racket newRacket() {
-        return new Racket(Game.getWidth() / 2,
-                Game.getHeight() - Racket.getSize(),
+        return new Racket(
+                Racket.getRacketSize(),
+                Game.getWidth() / 2,
+                Game.getHeight() - Racket.getRacketSize(),
                 rocket_images.get(Game.getRandom().nextInt(rocket_images.size()))
         );
-//        return null;
     }
 
     // constructors
-    protected Racket(int posX, int posY, Image image) {
-        this.posX = posX;
-        this.posY = posY;
+    protected Racket(int objectSize, int posX, int posY, Image image) {
+        super(objectSize, posX, posY);
         this.image = image;
     }
 }

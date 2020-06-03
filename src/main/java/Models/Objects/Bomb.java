@@ -1,6 +1,5 @@
-package Models;
+package Models.Objects;
 
-import Models.Objects.Racket;
 import View.Menus.Game;
 import javafx.scene.image.Image;
 import javafx.scene.media.Media;
@@ -42,36 +41,35 @@ public class Bomb extends Racket {
         Bomb.speed = speed;
     }
 
+    @Override
     public void update() {
         super.update();
-
-        if (ok) {
-
+        if (!explosion) {
             posY += speed;
-
             if (posY > Game.getHeight()) {
-                ok = false;
-                destroyed = true;
+                explosion = false;
+                setRemove(true);
             }
         }
-    }
-
-    @NotNull
-    @Contract(" -> new")
-    public static Bomb newBomb() {
-        return new Bomb(
-                Game.getRandom().nextInt(Game.getWidth() - Racket.getSize()),
-                Game.getRandom().nextInt(Game.getHeight() / 4),
-                Bomb.bombs_image.get(Game.getRandom().nextInt(Bomb.bombs_image.size()))
-        );
-//        return null;
     }
 
     public static void setup() {
         setSpeed(2);
     }
 
-    private Bomb(int posX, int posY, Image image) {
-        super(posX, posY, image);
+    @NotNull
+    @Contract(" -> new")
+    public static Bomb newBomb() {
+        return new Bomb(
+                Racket.getRacketSize(),
+                Game.getRandom().nextInt(Game.getWidth() - Racket.getRacketSize()),
+                Game.getRandom().nextInt(Game.getHeight() / 4),
+                Bomb.bombs_image.get(Game.getRandom().nextInt(Bomb.bombs_image.size()))
+        );
+//        return null;
+    }
+
+    private Bomb(int objectSize, int posX, int posY, Image image) {
+        super(objectSize, posX, posY, image);
     }
 }

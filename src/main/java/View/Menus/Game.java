@@ -1,7 +1,9 @@
 package View.Menus;
 
 import Models.*;
+import Models.Objects.Bomb;
 import Models.Objects.Racket;
+import Models.Objects.Shot;
 import Tools.IWindow;
 import View.MainWindow;
 import javafx.animation.KeyFrame;
