@@ -173,8 +173,6 @@ public class Game implements IWindow {
 
     public void run_game_controller() {
 
-        bombList.removeIf(MainObject::getRemove);
-
         universeList.removeIf(universe -> universe.getPosY() > height);
 
         shotList.removeIf(shot -> shot.getPosY() < 0 || shot.isRemove());
@@ -187,15 +185,15 @@ public class Game implements IWindow {
             for (Bomb bomb : bombList) {
                 if (!bomb.isExplosion() && shot.collide(bomb)) {
                     shot.ifCollide();
+                    bomb.ifCollide();
                     scoreForGame++;
-                    new Thread(
-                            () -> Bomb.getVoice().play()
-                    ).start();
                 }
             }
         }
 
-        Bomb.setSpeed(getScoreForGame() / 30.0 + 2);
+        bombList.removeIf(MainObject::getRemove);
+
+        Bomb.setSpeed(getScoreForGame() / 30 + 2);
 
         universeList.add(new Universe());
 

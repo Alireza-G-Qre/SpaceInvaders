@@ -14,7 +14,9 @@ import java.util.Random;
 
 public class Bomb extends Racket {
 
-    private static double speed = 2;
+    private int moveNum;
+    private int moveState;
+    private static int speed = 2;
     private static final int Max_Bombs = 10;
     private static List<Image> bombs_image = Arrays.asList(
             new Image("file:src/main/resources/Images/Bombs/Bomb-01.png"),
@@ -33,13 +35,17 @@ public class Bomb extends Racket {
         return Max_Bombs;
     }
 
+    public static int getSpeed() {
+        return speed;
+    }
+
     @NotNull
     @Contract(" -> new")
     public static MediaPlayer getVoice() {
         return new MediaPlayer(explosion_Sound);
     }
 
-    public static void setSpeed(double speed) {
+    public static void setSpeed(int speed) {
         Bomb.speed = speed;
     }
 
@@ -48,7 +54,8 @@ public class Bomb extends Racket {
     public void update() {
         super.update();
         if (!explosion) {
-            posY += speed;
+            move();
+            setPosY(getPosY() + getSpeed());
             if (posY > Game.getHeight()) {
                 explosion = false;
                 setRemove(true);
@@ -60,9 +67,16 @@ public class Bomb extends Racket {
         setSpeed(2);
     }
 
-    public void move() {
-        Random random = new Random();
-        switch (random.nextInt(3)) {
+    private void move() {
+
+        if (moveNum == 0) {
+
+            Random random = new Random();
+            moveState = random.nextInt(3);
+            moveNum = 10;
+        }
+
+        switch (moveState) {
             case 0:
                 moveToRight();
                 break;
@@ -70,6 +84,16 @@ public class Bomb extends Racket {
                 moveToLeft();
                 break;
         }
+
+        moveNum--;
+    }
+
+    @Override
+    public void ifCollide() {
+        super.ifCollide();
+        new Thread(
+                () -> Bomb.getVoice().play()
+        ).start();
     }
 
     // constructors
