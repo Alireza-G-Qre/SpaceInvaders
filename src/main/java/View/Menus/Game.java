@@ -127,7 +127,11 @@ public class Game implements IWindow {
         gameLineDrawing.setCycleCount(Timeline.INDEFINITE);
 
         gameMusicThread.start();
-        gameMusicPlayer.setOnEndOfMedia(() -> gameMusicPlayer.seek(Duration.ZERO));
+        gameMusicPlayer.seek(Duration.seconds(180));
+        gameMusicPlayer.setOnEndOfMedia(() -> {
+            gameMusicPlayer.seek(Duration.ZERO);
+            gameMusicPlayer.play();
+        });
 
         startGame();
 
@@ -222,6 +226,7 @@ public class Game implements IWindow {
         ownRacket.drawObj();
 
         bombList.forEach(bomb -> {
+            bomb.move();
             bomb.update();
             bomb.drawObj();
         });
@@ -259,7 +264,7 @@ public class Game implements IWindow {
         gameLineControl.stop();
         gameLineDrawing.stop();
         gameMusicPlayer.pause();
-        state.setText("Stop..");
+        state.setText("Stop :Enter any Key to restart.");
         state.setVisible(true);
     }
 

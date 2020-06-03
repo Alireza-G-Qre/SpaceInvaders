@@ -48,7 +48,7 @@ public class Shot extends MainObject {
 
     @Override
     public void update() {
-        setPosY(getPosY() - getShotSpeed());
+        posY = posY - shotSpeed;
     }
 
     @Override

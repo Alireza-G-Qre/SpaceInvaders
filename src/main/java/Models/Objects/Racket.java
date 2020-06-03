@@ -50,24 +50,25 @@ public class Racket extends MainObject {
 
     // controller method
     public void moveToUp() {
-        setPosY(Math.max(0, posY - move_steps));
-    }
-
-    public void moveToLeft() {
-        setPosX(Math.max(0, posX - move_steps));
-    }
-
-    public void moveToRight() {
-        setPosX(Math.min(
-                Game.getWidth() - Racket.getRacketSize(),
-                posX + move_steps
-        ));
+        posY = Math.max(0, posY - move_steps);
     }
 
     public void moveToDown() {
-        setPosX(Math.min(Game.getHeight() - Racket.getRacketSize(),
+        posY = Math.min(
+                Game.getHeight() - Racket.getRacketSize(),
                 posY + move_steps
-        ));
+        );
+    }
+
+    public void moveToLeft() {
+        posX = Math.max(0, posX - move_steps);
+    }
+
+    public void moveToRight() {
+        posX = Math.min(
+                Game.getWidth() - Racket.getRacketSize(),
+                posX + move_steps
+        );
     }
 
     public Shot shoot() {
@@ -91,7 +92,13 @@ public class Racket extends MainObject {
 
     @Override
     public void drawObj() {
-        Game.getGc().drawImage(image, posX, posY, Racket.getRacketSize(), Racket.getRacketSize());
+        Game.getGc().drawImage(
+                image,
+                posX,
+                posY,
+                Racket.getRacketSize(),
+                Racket.getRacketSize()
+        );
     }
 
     @Override

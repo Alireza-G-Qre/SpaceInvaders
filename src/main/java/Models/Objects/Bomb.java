@@ -35,10 +35,6 @@ public class Bomb extends Racket {
         return Max_Bombs;
     }
 
-    public static int getSpeed() {
-        return speed;
-    }
-
     @NotNull
     @Contract(" -> new")
     public static MediaPlayer getVoice() {
@@ -54,8 +50,7 @@ public class Bomb extends Racket {
     public void update() {
         super.update();
         if (!explosion) {
-            move();
-            setPosY(getPosY() + getSpeed());
+            posY = posY + speed;
             if (posY > Game.getHeight()) {
                 explosion = false;
                 setRemove(true);
@@ -67,22 +62,24 @@ public class Bomb extends Racket {
         setSpeed(2);
     }
 
-    private void move() {
+    public void move() {
 
         if (moveNum == 0) {
 
             Random random = new Random();
-            moveState = random.nextInt(3);
+            moveState = random.nextInt(10);
             moveNum = 25;
         }
 
         switch (moveState) {
             case 0:
-                moveToRight();
+                posX = Math.max(0, posX - 3);
                 break;
             case 1:
-                moveToLeft();
-                break;
+                posX = Math.min(
+                        Game.getWidth() - Racket.getRacketSize(),
+                        posX + 3
+                );
         }
 
         moveNum--;
