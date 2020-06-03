@@ -173,7 +173,7 @@ public class Game implements IWindow {
 
     public void run_game_controller() {
 
-        bombList.removeIf(Racket::isDestroyed);
+        bombList.removeIf(MainObject::getRemove);
 
         universeList.removeIf(universe -> universe.getPosY() > height);
 
@@ -181,14 +181,13 @@ public class Game implements IWindow {
 
         if (bombList.size() < Bomb.getMax_Bombs()) bombList.add(Bomb.newBomb());
 
-        if (ownRacket.isOk() && bombList.stream().anyMatch(bomb -> ownRacket.collide(bomb))) ownRacket.explode();
+        if (!ownRacket.isExplosion() && bombList.stream().anyMatch(bomb -> ownRacket.collide(bomb))) ownRacket.ifCollide();
 
         for (Shot shot : shotList) {
             for (Bomb bomb : bombList) {
-                if (bomb.isOk() && shot.collide(bomb)) {
-                    bomb.explode();
+                if (!bomb.isExplosion() && shot.collide(bomb)) {
+                    shot.ifCollide();
                     scoreForGame++;
-                    shot.setRemove(true);
                     new Thread(
                             () -> Bomb.getVoice().play()
                     ).start();
@@ -200,7 +199,7 @@ public class Game implements IWindow {
 
         universeList.add(new Universe());
 
-        gameOver = ownRacket.isDestroyed();
+        gameOver = ownRacket.getRemove();
 
         if (gameOver) {
             gameOver_state_controller();
@@ -222,16 +221,16 @@ public class Game implements IWindow {
         universeList.forEach(Universe::draw);
 
         ownRacket.update();
-        ownRacket.draw();
+        ownRacket.drawObj();
 
         bombList.forEach(bomb -> {
             bomb.update();
-            bomb.draw();
+            bomb.drawObj();
         });
 
         shotList.forEach(shot -> {
             shot.update();
-            shot.draw();
+            shot.drawObj();
         });
     }
 

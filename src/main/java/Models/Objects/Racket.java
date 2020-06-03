@@ -50,28 +50,29 @@ public class Racket extends MainObject {
 
     // controller method
     public void moveToUp() {
-        posY = Math.max(0, posY - move_steps);
+        setPosY(Math.max(0, posY - move_steps));
     }
 
     public void moveToLeft() {
-        posX = Math.max(0, posX - move_steps);
+        setPosX(Math.max(0, posX - move_steps));
     }
 
     public void moveToRight() {
-        posX = Math.min(
+        setPosX(Math.min(
                 Game.getWidth() - Racket.getRacketSize(),
                 posX + move_steps
-        );
+        ));
     }
 
     public void moveToDown() {
-        posY = Math.min(Game.getHeight() - Racket.getRacketSize(),
+        setPosX(Math.min(Game.getHeight() - Racket.getRacketSize(),
                 posY + move_steps
-        );
+        ));
     }
 
     public Shot shoot() {
         return new Shot(
+                Shot.getSize(),
                 posX + Racket.getRacketSize() / 2,
                 posY - Racket.getRacketSize() / 2
         );

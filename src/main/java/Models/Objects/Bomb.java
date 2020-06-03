@@ -10,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class Bomb extends Racket {
 
@@ -27,6 +28,7 @@ public class Bomb extends Racket {
             new File("src/main/resources/Game/explosion.wav").toURI().toString()
     );
 
+    // Getter and Setters
     public static int getMax_Bombs() {
         return Max_Bombs;
     }
@@ -41,6 +43,7 @@ public class Bomb extends Racket {
         Bomb.speed = speed;
     }
 
+    // controllers
     @Override
     public void update() {
         super.update();
@@ -57,6 +60,19 @@ public class Bomb extends Racket {
         setSpeed(2);
     }
 
+    public void move() {
+        Random random = new Random();
+        switch (random.nextInt(3)) {
+            case 0:
+                moveToRight();
+                break;
+            case 1:
+                moveToLeft();
+                break;
+        }
+    }
+
+    // constructors
     @NotNull
     @Contract(" -> new")
     public static Bomb newBomb() {

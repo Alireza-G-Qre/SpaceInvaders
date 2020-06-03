@@ -20,6 +20,10 @@ public class Shot extends MainObject {
         return max_Shots;
     }
 
+    public static int getSize() {
+        return size;
+    }
+
     public void setRemove(boolean remove) {
         this.remove = remove;
     }
@@ -57,7 +61,7 @@ public class Shot extends MainObject {
 
     @Override
     public void ifCollide() {
-        //
+        setRemove(true);
     }
 
     private void shot_T01() {
