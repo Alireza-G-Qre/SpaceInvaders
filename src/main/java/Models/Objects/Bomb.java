@@ -73,7 +73,7 @@ public class Bomb extends Racket {
 
             Random random = new Random();
             moveState = random.nextInt(3);
-            moveNum = 10;
+            moveNum = 25;
         }
 
         switch (moveState) {

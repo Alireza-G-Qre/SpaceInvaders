@@ -260,6 +260,7 @@ public class Game implements IWindow {
         gameLineDrawing.stop();
         gameMusicPlayer.pause();
         state.setText("Stop..");
+        state.setVisible(true);
     }
 
     private void startGame() {
